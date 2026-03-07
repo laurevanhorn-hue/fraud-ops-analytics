@@ -24,3 +24,10 @@ Note: The dataset is large (143MB), so it is not stored directly in this GitHub 
 Analysis of transaction amounts shows that fraud transactions are more common among smaller transaction values.
 
 This suggests fraudsters may attempt to avoid detection by performing many small purchases instead of large ones.
+
+## Fraud rate by transaction amount
+
+![Fraud rate by amount](images/fraud_rate_by_amount.png)
+
+Fraud activity is concentrated in the smallest transaction ranges.  
+This pattern suggests attackers may perform low-value transactions to avoid detection or test stolen cards.
