@@ -32,4 +32,3 @@ This suggests fraudsters may attempt to avoid detection by performing many small
 Fraud activity is concentrated in the smallest transaction ranges.  
 This pattern suggests attackers may perform low-value transactions to avoid detection or test stolen cards.
 
-![Fraud rate by amount](images/fraud_rate_by_amount.png)
