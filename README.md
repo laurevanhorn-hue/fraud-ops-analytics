@@ -18,3 +18,9 @@ data/creditcard.csv
 Note: The dataset is large (143MB), so it is not stored directly in this GitHub repository.
 
 ## Project Structure
+
+## Fraud Patterns
+
+Analysis of transaction amounts shows that fraud transactions are more common among smaller transaction values.
+
+This suggests fraudsters may attempt to avoid detection by performing many small purchases instead of large ones.
