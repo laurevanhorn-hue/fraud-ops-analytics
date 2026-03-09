@@ -1,5 +1,18 @@
 # Fraud Operations Analytics
 
+This project analyzes a public credit-card transaction dataset (284k transactions) to identify behavioral patterns associated with fraudulent activity.
+
+Tools used:
+- Python (pandas)
+- SQL
+- Jupyter / Google Colab
+- GitHub
+
+The analysis focuses on:
+- fraud frequency by transaction size
+- fraud activity over time
+- rapid repeated transactions
+
 ## Project Overview
 This project analyzes credit card transactions to identify patterns associated with fraudulent activity.  
 The goal is to explore transaction behavior and highlight potential operational monitoring rules for fraud detection.
@@ -77,4 +90,39 @@ fraud_by_hour = (
           'mean':'fraud_rate'
       })
 )
+
+## Rapid repeated transactions
+
+Fraudulent transactions can occur in short bursts when attackers attempt multiple charges in quick succession.
+
+We calculated the time difference between consecutive transactions and analyzed whether fraud events tend to occur within short intervals.
+
+Method:
+- Sort transactions by timestamp
+- Compute the previous transaction time
+- Calculate the time gap between events
+
+Insight:
+Transactions occurring within very short intervals may indicate automated fraud attempts or card testing behavior.
+
+Operational implication:
+Monitoring systems may benefit from additional alerts for clusters of transactions occurring within seconds of each other.
+
+## Key findings
+
+1. **Fraud by transaction amount**  
+   Fraud activity is more common in smaller transactions.
+
+2. **Fraud by time of activity**  
+   Fraud spikes during early hours of the transaction timeline.
+
+3. **Rapid repeated transactions**  
+   Fraud events can occur in short bursts of activity.
+
+These patterns suggest that fraud detection systems should monitor:
+- clusters of small transactions
+- unusual activity during low-traffic hours
+- rapid repeated transaction attempts
+
+
 
