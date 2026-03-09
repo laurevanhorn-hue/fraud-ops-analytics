@@ -17,7 +17,19 @@ data/creditcard.csv
 
 Note: The dataset is large (143MB), so it is not stored directly in this GitHub repository.
 
-## Project Structure
+## Project structure
+
+notebooks/  
+Contains the full Python analysis.
+
+images/  
+Visualization outputs used in the analysis.
+
+sql/  
+Example SQL queries reproducing similar analyses.
+
+README.md  
+Project explanation and insights.
 
 ## Fraud Patterns
 
