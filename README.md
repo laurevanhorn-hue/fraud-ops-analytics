@@ -1,6 +1,10 @@
-# Fraud Operations Analytics
+## Project Overview
 
 This project analyzes a public credit-card transaction dataset (284k transactions) to identify behavioral patterns associated with fraudulent activity.
+
+The goal is to explore transaction behavior and highlight potential operational monitoring rules for fraud detection.
+
+# Fraud Operations Analytics
 
 Tools used:
 - Python (pandas)
@@ -12,10 +16,6 @@ The analysis focuses on:
 - fraud frequency by transaction size
 - fraud activity over time
 - rapid repeated transactions
-
-## Project Overview
-This project analyzes credit card transactions to identify patterns associated with fraudulent activity.  
-The goal is to explore transaction behavior and highlight potential operational monitoring rules for fraud detection.
 
 ## Dataset
 
@@ -32,36 +32,38 @@ Note: The dataset is large (143MB), so it is not stored directly in this GitHub 
 
 ## Project structure
 
-notebooks/  
-Contains the full Python analysis.
+fraud-ops-analytics
+│
+├── notebooks
+│   fraud_ops.ipynb
+│
+├── images
+│   fraud_rate_by_amount.png
+│   fraud_rate_by_hour.png
+│
+├── sql
+│   fraud_ops.sql
+│
+└── README.md
 
-images/  
-Visualization outputs used in the analysis.
-
-sql/  
-Example SQL queries reproducing similar analyses.
-
-README.md  
-Project explanation and insights.
+notebooks/ – full Python analysis
+images/ – visualization outputs used in the project
+sql/ – SQL examples reproducing similar analyses
 
 ## Fraud Patterns
-
-Analysis of transaction amounts shows that fraud transactions are more common among smaller transaction values.
-
-This suggests fraudsters may attempt to avoid detection by performing many small purchases instead of large ones.
 
 ## Fraud rate by transaction amount
 
 ![Fraud rate by amount](images/fraud_rate_by_amount.png)
 
-Fraud activity is concentrated in the smallest transaction ranges.  
-This pattern suggests attackers may perform low-value transactions to avoid detection or test stolen cards.
+Analysis of transaction amounts shows that fraud transactions are more common among smaller transaction values.
+This suggests fraudsters may attempt to avoid detection by performing many small purchases instead of large ones.
 
 ## Fraud activity by hour
 
 ![Fraud rate by hour](images/fraud_rate_by_hour.png)
 
-We analyzed fraud frequency across hourly buckets derived from the transaction timestamp (`Time`).
+We analyzed fraud frequency across hourly buckets derived from the transaction timestamp (Time).
 
 **Method**
 - Converted the dataset’s `Time` (seconds since first transaction) into hourly buckets.
@@ -93,9 +95,9 @@ fraud_by_hour = (
 
 ## Rapid repeated transactions
 
-Fraudulent transactions can occur in short bursts when attackers attempt multiple charges in quick succession.
+Fraudulent activity can occur as bursts of transactions within very short time intervals.
 
-We calculated the time difference between consecutive transactions and analyzed whether fraud events tend to occur within short intervals.
+Attackers may attempt multiple charges quickly to test stolen cards or exploit automated payment systems.
 
 Method:
 - Sort transactions by timestamp
