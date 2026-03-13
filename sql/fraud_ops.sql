@@ -43,3 +43,34 @@ SELECT
 FROM hourly_transactions
 GROUP BY hour_bucket
 ORDER BY hour_bucket;
+
+-- 3. Fraud rate by transaction time gap
+
+WITH gaps AS (
+    SELECT
+        Time,
+        Class,
+        Time - LAG(Time) OVER (ORDER BY Time) AS gap_seconds
+    FROM creditcard
+),
+bucketed AS (
+    SELECT
+        CASE
+            WHEN gap_seconds < 1 THEN 'under_1_sec'
+            WHEN gap_seconds <= 10 THEN '1_to_10_sec'
+            WHEN gap_seconds <= 60 THEN '10_to_60_sec'
+            ELSE '60_plus_sec'
+        END AS gap_bucket,
+        Class
+    FROM gaps
+    WHERE gap_seconds IS NOT NULL
+)
+SELECT
+    gap_bucket,
+    COUNT(*) AS total_transactions,
+    SUM(Class) AS fraud_transactions,
+    ROUND(AVG(Class) * 100, 3) AS fraud_rate_pct
+FROM bucketed
+GROUP BY gap_bucket
+HAVING COUNT(*) > 0
+ORDER BY fraud_rate_pct DESC;
