@@ -8,13 +8,13 @@ The goal is to explore transaction behavior and highlight potential operational 
 
 ## Fraud Operations Analytics
 
-**Tools used:**
+### Tools Used
 - Python (pandas)
 - SQL
 - Jupyter / Google Colab
 - GitHub
 
-**The analysis focuses on:**
+### Focus Areas
 - fraud frequency by transaction size
 - fraud activity over time
 - rapid transaction bursts
@@ -28,14 +28,30 @@ The dataset used in this project is publicly available on Kaggle:
 **Credit Card Fraud Detection Dataset**  
 https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
-Download the file **creditcard.csv** and place it in:
-data/creditcard.csv
+Download the file `creditcard.csv` and place it in:
 
+data/creditcard.csv
 
 **Note:** The dataset is large (~143MB), so it is not stored in this repository.
 
-## Project Structure
+---
 
+## How to Run This Project
+
+1. Clone the repository
+2. Install dependencies:
+
+pip install -r requirements.txt
+
+3. Place the dataset file:
+
+data/creditcard.csv
+
+4. Open the notebook:
+
+notebooks/fraud_ops.ipynb
+---
+## Project Structure
 
 fraud-ops-analytics/
 │
@@ -131,6 +147,15 @@ The 1–10 second bucket also contained over **5,000 transactions**, making this
 
 Fraud detection systems may benefit from monitoring clusters of transactions occurring within short time windows (**1–10 seconds**), as this pattern shows elevated fraud risk.
 
+### Visualization
+
+### SQL
+
+SELECT
+    *,
+    LAG(Time) OVER (ORDER BY Time) AS prev_time,
+    Time - LAG(Time) OVER (ORDER BY Time) AS gap_seconds
+FROM transactions;
 ---
 
 ## Key Findings
