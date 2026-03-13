@@ -126,5 +126,26 @@ These patterns suggest that fraud detection systems should monitor:
 - unusual activity during low-traffic hours
 - rapid repeated transaction attempts
 
+## D4 — Rapid Transaction Bursts
+
+I analyzed the time gap between consecutive transactions using the dataset's `Time` feature (seconds since the first transaction).
+
+Transactions were grouped into:
+- under 1 second
+- 1 to 10 seconds
+- 10 to 60 seconds
+
+### Key Finding
+
+The highest fraud rate was observed in the **1–10 second** bucket (~0.70%), followed by the 10–60 second bucket (~0.59%).
+
+Interestingly, transactions occurring in under 1 second had a lower fraud rate (~0.22%), suggesting that fraud is not associated with the fastest possible activity, but rather with short bursts within a few seconds.
+
+The 1–10 second bucket also contained over 5,000 transactions, making this pattern both statistically meaningful and operationally relevant.
+
+### Visualization
+
+![Fraud Rate by Time Gap](d4_fraud_rate_by_gap.png)
+
 
 
