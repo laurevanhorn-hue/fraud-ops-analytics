@@ -26,3 +26,20 @@ SELECT
 FROM amount_buckets
 GROUP BY amount_bucket
 ORDER BY fraud_rate_pct DESC;
+
+-- 2. Fraud rate by hour
+
+WITH hourly_transactions AS (
+    SELECT
+        CAST(FLOOR(Time / 3600) % 24 AS INT) AS hour_bucket,
+        Class
+    FROM creditcard
+)
+SELECT
+    hour_bucket,
+    COUNT(*) AS total_transactions,
+    SUM(Class) AS fraud_transactions,
+    ROUND(AVG(Class) * 100, 3) AS fraud_rate_pct
+FROM hourly_transactions
+GROUP BY hour_bucket
+ORDER BY hour_bucket;
