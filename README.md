@@ -1,6 +1,6 @@
 ## Project Overview
 
-This project analyzes a public credit-card transaction dataset (284k transactions) to identify behavioral patterns associated with fraudulent activity.
+This project analyzes a public credit-card transaction dataset (284k transactions) to identify behavioral patterns associated with fraudulent activity. It targets credit card fraud patterns using transaction-level data, focusing on behavioral signals such as transaction timing, amount distribution, and rapid transaction bursts.
 
 The goal is to explore transaction behavior and highlight potential operational monitoring rules for fraud detection.
 
