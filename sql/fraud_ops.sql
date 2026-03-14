@@ -5,6 +5,17 @@
 -- Amount = transaction amount
 -- Class  = fraud flag (1 = fraud, 0 = non-fraud)
 
+-- 0. Dataset summary
+
+SELECT
+    COUNT(*) AS total_transactions,
+    SUM(Class) AS total_fraud_transactions,
+    ROUND(AVG(Class) * 100, 3) AS overall_fraud_rate_pct,
+    ROUND(MIN(Amount), 2) AS min_amount,
+    ROUND(MAX(Amount), 2) AS max_amount,
+    ROUND(AVG(Amount), 2) AS avg_amount
+FROM creditcard;
+
 -- 1. Fraud rate by transaction amount bucket
 
 WITH amount_buckets AS (
