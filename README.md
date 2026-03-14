@@ -149,13 +149,15 @@ Fraud detection systems may benefit from monitoring clusters of transactions occ
 
 ### Visualization
 
-### SQL
+### SQL Analysis
 
-SELECT
-    *,
-    LAG(Time) OVER (ORDER BY Time) AS prev_time,
-    Time - LAG(Time) OVER (ORDER BY Time) AS gap_seconds
-FROM transactions;
+The project also includes SQL versions of the main analyses in `sql/fraud_ops.sql`, including:
+
+- fraud rate by transaction amount bucket
+- fraud rate by hour
+- fraud rate by transaction time gap using `LAG()`
+
+These queries mirror the pandas analysis and demonstrate equivalent analytical logic in SQL.
 ---
 
 ## Key Findings
