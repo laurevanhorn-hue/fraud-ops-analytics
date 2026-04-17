@@ -177,3 +177,16 @@ Fraud tends to occur in short sequences rather than isolated events.
 - increase monitoring during low-activity hours  
 - flag rapid repeated transaction patterns  
 
+## SQL
+
+WITH transactions_with_lag AS (
+    SELECT
+        user_id,
+        transaction_time,
+        amount,
+        LAG(transaction_time) OVER (PARTITION BY user_id ORDER BY transaction_time) AS prev_time
+    FROM transactions
+)
+SELECT *,
+       EXTRACT(EPOCH FROM (transaction_time - prev_time)) AS seconds_between
+FROM transactions_with_lag;
